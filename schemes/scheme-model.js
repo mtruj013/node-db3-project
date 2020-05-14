@@ -39,11 +39,13 @@ function update(changes, id){
     return db("schemes")
     .where({id})
     .update(changes)
+    .then(ids => {
+        return findById(id[0])
+    })  
 }
 
 function remove(id){
     return db("schemes")
     .where({ id })
-    .del();
-
+    .del()
 }
