@@ -6,6 +6,7 @@ module.exports = {
     findSteps,
     add,
     update,
+    addStep,
     remove
 }
 
@@ -42,6 +43,14 @@ function update(changes, id){
     .then(ids => {
         return findById(id[0])
     })  
+}
+
+function addStep(step, scheme_id){
+    return db("steps")
+    .insert(step, scheme_id)
+    .then(ids => {
+        return findSteps(ids)
+    })
 }
 
 function remove(id){
